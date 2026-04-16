@@ -1,0 +1,41 @@
+cabal-version: 2.4
+name:          aviutl2
+version:       2.0.0.0
+synopsis:      AviUtl ExEdit2 Plugin SDK for Haskell
+description:   Haskell bindings for the AviUtl ExEdit2 Plugin SDK.
+               Provides FFI types, Storable instances, and high-level wrappers
+               for creating input, output, filter, script module, and common plugins.
+category:      FFI, Multimedia
+license:       MIT
+license-file:  LICENSE
+author:        AviUtl2 Haskell SDK
+build-type:    Simple
+
+library
+  exposed-modules:
+    AviUtl2.Plugin
+    AviUtl2.Types
+    AviUtl2.Logger
+    AviUtl2.Config
+    AviUtl2.Filter
+    AviUtl2.Input
+    AviUtl2.Output
+    AviUtl2.Module
+    AviUtl2.Edit
+    AviUtl2.Host
+  build-depends:
+    base >= 4.14 && < 5,
+    JuicyPixels >= 3.3 && < 3.4,
+    bytestring >= 0.11 && < 0.13,
+    process >= 1.6 && < 1.7,
+    directory >= 1.3 && < 1.4,
+    filepath >= 1.4 && < 1.6,
+    vector >= 0.12 && < 0.14
+  c-sources:
+    cbits/aviutl2_shims.c
+  hs-source-dirs: src
+  default-language: Haskell2010
+  ghc-options: -Wall -Wcompat
+  if os(windows)
+    cpp-options: -DWINDOWS
+    extra-libraries: kernel32 user32 gdi32
