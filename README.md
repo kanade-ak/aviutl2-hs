@@ -2,16 +2,16 @@
 
 # 研究目的以外で使用するのは非推奨です
 
-Haskell から AviUtl ExEdit2 プラグインを作るための SDK です。
-SDKの更新に合わせてリアルタイムに追従はしません。
+Haskell から AviUtl ExEdit2 プラグインを作るための SDK です。  
+`aviutl2_sdk` の C/C++ ヘッダを Haskell FFI 向けに移植し、`Storable` 実装、関数ポインタ呼び出し、各種プラグイン用の型を提供します。  
+
+
+SDKの更新に合わせてリアルタイムに追従はしません。  
 最新のSDKを使用したい場合は本家のSDKで作るかRustで作成してください。
 
 SDK対応状態
 - AviUtl2 beta41a
 - 2026/4/12 に更新されたSDK
-
-
-`aviutl2_sdk` の C/C++ ヘッダを Haskell FFI 向けに移植し、`Storable` 実装、関数ポインタ呼び出し、各種プラグイン用の型を提供します。
 
 ## 状態
 
