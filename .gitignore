@@ -18,4 +18,4 @@
 *.mod2
 *.o
 *.pdb
-src/**/*_stub.h
+*_stub.h

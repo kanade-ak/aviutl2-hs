@@ -11,6 +11,7 @@ $buildDir = Join-Path $repoRoot 'build'
 $pluginDir = Join-Path $repoRoot 'plugin'
 $licenseSourceDir = Join-Path $repoRoot 'licenses'
 $pluginLicenseDir = Join-Path $pluginDir 'licenses'
+$sdkIncludeDir = Join-Path $repoRoot 'external\aviutl2_sdk_mirror\include'
 $pluginDeployDir = $null
 $scriptDeployDir = $null
 
@@ -266,6 +267,10 @@ Set-Location $repoRoot
 New-Item -ItemType Directory -Force $buildDir | Out-Null
 New-Item -ItemType Directory -Force $pluginDir | Out-Null
 
+if (-not (Test-Path -LiteralPath (Join-Path $sdkIncludeDir 'aviutl2_sdk\plugin2.h'))) {
+  throw 'AviUtl2 SDK submodule is missing. Run: git submodule update --init --recursive'
+}
+
 if (-not (Test-Path -LiteralPath $licenseSourceDir)) {
   throw "licenses directory not found: $licenseSourceDir"
 }
@@ -306,11 +311,13 @@ foreach ($target in $targets) {
     '-no-hs-main'
     '-isrc'
     '-iexamples'
-    '-Iinclude'
+    "-I$sdkIncludeDir"
     '-optcxx-std=c++17'
     '-odir'
     $objDir
     '-hidir'
+    $objDir
+    '-stubdir'
     $objDir
     '-o'
     $outputPath

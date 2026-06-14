@@ -10,7 +10,13 @@ SDKの更新に合わせてリアルタイムに追従はしません。
 
 ## AviUtl2 SDK参照元
 
-このリポジトリの`include/aviutl2_sdk`は、[aviutl2/aviutl2_sdk_mirrorのcommit`95c244dfb1eb4796faafd415c9a0fe3be7645991`](https://github.com/aviutl2/aviutl2_sdk_mirror/tree/95c244dfb1eb4796faafd415c9a0fe3be7645991)を基準にしています。
+このリポジトリではAviUtl2 SDKヘッダを同梱せず、`external/aviutl2_sdk_mirror` submodule を[aviutl2/aviutl2_sdk_mirrorのcommit `95c244dfb1eb4796faafd415c9a0fe3be7645991`](https://github.com/aviutl2/aviutl2_sdk_mirror/tree/95c244dfb1eb4796faafd415c9a0fe3be7645991)に固定して参照します。
+
+clone後は次を実行してください。
+
+```powershell
+git submodule update --init --recursive
+```
 
 AviUtl2 SDKのライセンスは`licenses/aviutl2_sdk_license.txt`を参照してください。
 
@@ -61,7 +67,7 @@ SDK 対応状態:
 
 - `src/`: SDK本体
 - `cbits/`: Haskell RTS初期化やABI補助用のC++ shim
-- `include/aviutl2_sdk/`: C++ shimが参照するAviUtl2 SDKヘッダ
+- `external/aviutl2_sdk_mirror/`: C++ shimが参照するAviUtl2 SDK mirror submodule
 - `examples/`: Haskell製サンプル
 - `scripts/`: サンプルDLLのビルドスクリプト
 - `licenses/`: 同梱ライセンス
@@ -119,7 +125,7 @@ AviUtl2に読み込ませるにはWindowsDLLとしてビルドする必要があ
 ```powershell
 ghc --make -shared -threaded -no-hs-main `
   -isrc -iexamples `
-  -Iinclude `
+  -Iexternal\aviutl2_sdk_mirror\include `
   -optcxx-std=c++17 `
   -odir build\MyPlugin_obj `
   -hidir build\MyPlugin_obj `
