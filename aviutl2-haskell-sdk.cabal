@@ -9,7 +9,7 @@ description:   Haskell bindings for the AviUtl ExEdit2 Plugin SDK.
 category:      FFI, Multimedia
 license:       MIT
 license-file:  LICENSE
-author:        AviUtl2 Haskell SDK
+author:        kanade-ak
 build-type:    Simple
 
 library
